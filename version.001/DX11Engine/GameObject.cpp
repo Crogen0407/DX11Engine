@@ -44,6 +44,13 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
+	Vec3 pos = _transform->GetPosition();
+	pos.x += 0.001f;
+	_transform->SetPosition(pos);
+
+	_transformData.world = _transform->GetWorld();
+
+	_constantBuffer->CopyData(_transformData);
 }
 
 void GameObject::Render(std::shared_ptr<Pipeline> pipeline)

@@ -1,4 +1,5 @@
 #pragma once
+#define _XM_NO_INTRINSICS_
 
 #include "Types.h"
 #include "Values.h"
@@ -22,11 +23,11 @@ using std::vector;
 // WIN
 #include <windows.h>
 #include <assert.h>
+#include <wrl.h>
 
 // DX
 #include <d3d11.h>
 #include <d3dcompiler.h>
-#include <wrl.h>
 #include <DirectXMath.h>
 #include <DirectXTex/DirectXTex.h>
 #include <DirectXTex/DirectXTex.inl>
@@ -77,3 +78,4 @@ using std::endl;
 #include "SamplerState.h"
 #include "BlendState.h"
 #include "Pipeline.h"
+#include "Transform.h"

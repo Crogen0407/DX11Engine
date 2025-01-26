@@ -29,8 +29,6 @@ private:
 	TransformData _transformData;
 	std::shared_ptr<ConstantBuffer<TransformData>> _constantBuffer;
 
-	XMFLOAT3 _localPosition = { 1.f, 1.f, 1.f };
-	XMFLOAT3 _localRotation = { 1.f, 1.f, 1.f };
-	XMFLOAT3 _localScale = { 1.f, 1.f, 1.f };
+	shared_ptr<Transform> _transform = make_shared<Transform>();
 };
 
