@@ -24,8 +24,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     if (!InitInstance(hInstance, nCmdShow))
         return FALSE;
 
-    Core core;
-    core.Init(hWnd);
+    GCore->Init(hWnd);
 
     MSG msg = {};
 
@@ -39,7 +38,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-            core.GameLoop();
+            GCore->GameLoop();
         }
     }
 

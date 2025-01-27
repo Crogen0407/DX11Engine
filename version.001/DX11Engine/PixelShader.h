@@ -1,9 +1,9 @@
 #pragma once
-#include "Shader.h"
+#include "ShaderBase.h"
 
-class PixelShader : public Shader
+class PixelShader : public ShaderBase
 {
-	using Super = Shader;
+	using Super = ShaderBase;
 public:
 	PixelShader(ComPtr<ID3D11Device> device);
 	~PixelShader();

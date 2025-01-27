@@ -1,5 +1,9 @@
 #pragma once
 class GameObject;
+class SceneManager;
+class ResourceManager;
+class RenderManager;
+
 class Core
 {
 public:
@@ -9,17 +13,23 @@ public:
 public:
 	void Init(HWND hWnd);
 	void GameLoop();
-
-private:
 	void Update();
 	void Render();
 
+	shared_ptr<SceneManager> GetSceneManager() { return _sceneManager; }
+	shared_ptr<ResourceManager> GetResourceManager() { return _resourceManager; }
+	shared_ptr<RenderManager> GetRenderManager() { return _renderManager; }
+
+	HWND GetHWnd() { return _hWnd; }
+
 private:
 	HWND _hWnd;
-	std::shared_ptr<Graphics> _graphics;
-	std::shared_ptr<Pipeline> _pipeline;
+	shared_ptr<Graphics> _graphics;
 
 private:
-	std::shared_ptr<GameObject> _object;
+	shared_ptr<SceneManager> _sceneManager;
+	shared_ptr<ResourceManager> _resourceManager;
+	shared_ptr<RenderManager> _renderManager;
 };
 
+extern unique_ptr<Core> GCore;

@@ -9,7 +9,7 @@ class IndexBuffer;
 class Texture;
 class SamplerState;
 
-#include "Shader.h"
+#include "ShaderBase.h"
 #include "ConstantBuffer.h"
 
 struct PipelineInfo

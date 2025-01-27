@@ -1,73 +1,124 @@
 #include "pch.h"
 #include "GameObject.h"
+#include "MonoBehaviour.h"
+#include "Transform.h"
+#include "Camera.h"
 
 GameObject::GameObject(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
 	: _device(device)
 {
-	_geometry = std::make_shared<Geometry<VertexTextureData>>();
-	GeometryHelper::CreateRectangle(_geometry);
-
-	_vertexBuffer = std::make_shared<VertexBuffer>(device);
-	_vertexBuffer->Create(_geometry->GetVertices());
-
-	_indexBuffer = std::make_shared <IndexBuffer>(device);
-	_indexBuffer->Create(_geometry->GetIndices());
-
-	_vertexShader = std::make_shared<VertexShader>(device);
-	_vertexShader->Create(L"Default.hlsl", "VS", "vs_5_0");
-
-	_inputLayout = std::make_shared <InputLayout>(device);
-	_inputLayout->Create(VertexTextureData::descs, _vertexShader->GetBlob());
-
-	_pixelShader = std::make_shared<PixelShader>(device);
-	_pixelShader->Create(L"Default.hlsl", "PS", "ps_5_0");
-
-	_rasterizerState = std::make_shared<RasterizerState>(device);
-	_rasterizerState->Create();
-
-	_blendState = std::make_shared<BlendState>(device);
-	_blendState->Create();
-
-	_constantBuffer = std::make_shared<ConstantBuffer<TransformData>>(device, deviceContext);
-	_constantBuffer->Create();
-
-	_texture = std::make_shared<Texture>(device);
-	_texture->Create(L"Player.png");
-
-	_samplerState = std::make_shared<SamplerState>(device);
-	_samplerState->Create();
+	
 }
 
 GameObject::~GameObject()
 {
 }
 
-void GameObject::Update()
+void GameObject::Awake()
 {
-	Vec3 pos = _transform->GetPosition();
-	pos.x += 0.001f;
-	_transform->SetPosition(pos);
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+			component->Awake();
+	}
 
-	_transformData.world = _transform->GetWorld();
-
-	_constantBuffer->CopyData(_transformData);
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		script->Awake();
+	}
 }
 
-void GameObject::Render(std::shared_ptr<Pipeline> pipeline)
+void GameObject::Start()
 {
-	PipelineInfo info;
-	info.inputLayout = _inputLayout;
-	info.vertexShader = _vertexShader;
-	info.pixelShader = _pixelShader;
-	info.rasterizerState = _rasterizerState;
-	info.blendState = _blendState;
-	pipeline->UpdatePipeline(info);
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+			component->Start();
+	}
 
-	pipeline->SetVertexBuffer(_vertexBuffer);
-	pipeline->SetIndexBuffer(_indexBuffer);
-	pipeline->SetConstantBuffer(0, ShaderScope_VertexShader, _constantBuffer);
-	pipeline->SetTexture(0, ShaderScope_PixelShader, _texture);
-	pipeline->SetSamplerState(0, ShaderScope_PixelShader, _samplerState);
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		script->Start();
+	}
+}
 
-	pipeline->DrawIndexed(_geometry->GetIndexCount(), 0, 0);
+void GameObject::FixedUpdate()
+{
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+			component->FixedUpdate();
+	}
+
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		script->FixedUpdate();
+	}
+}
+
+void GameObject::Update()
+{
+	for (shared_ptr<Component>& component : _components)
+	{
+		if(component)
+			component->Update();
+	}
+
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		script->Update();
+	}
+}
+
+void GameObject::LateUpdate()
+{
+	for (shared_ptr<Component>& component : _components)
+	{
+		if (component)
+			component->LateUpdate();
+	}
+
+	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	{
+		script->LateUpdate();
+	}
+}
+
+shared_ptr<Component> GameObject::GetFixedComponent(ComponentType type)
+{
+	UINT index = static_cast<UINT>(type);
+	assert(index < FIXED_COMPONENT_COUNT);
+	return _components[index];
+}
+
+shared_ptr<Transform> GameObject::GetTransform()
+{
+	shared_ptr<Component> component = GetFixedComponent(ComponentType::Transform);
+	return static_pointer_cast<Transform>(component);
+}
+
+shared_ptr<Transform> GameObject::GetOrAddTransform()
+{
+	if (GetTransform() == nullptr)
+	{
+		shared_ptr<Transform> transform = make_shared<Transform>();
+		AddComponent(transform);
+	}
+
+	return GetTransform();
+}
+
+void GameObject::AddComponent(shared_ptr<Component> component)
+{
+	component->SetOwner(shared_from_this());
+
+	UINT index = static_cast<UINT>(component->GetType());
+	if (index < FIXED_COMPONENT_COUNT)
+	{
+		_components[index] = component;
+	}
+	else
+	{
+		_scripts.push_back(dynamic_pointer_cast<MonoBehaviour>(component));
+	}
 }

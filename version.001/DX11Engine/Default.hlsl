@@ -13,6 +13,10 @@ struct VS_OUTPUT
 cbuffer TransformData : register(b0)
 {
     row_major matrix world;
+}
+
+cbuffer CameraData : register(b1)
+{
     row_major matrix view;
     row_major matrix projection;
 }
@@ -21,7 +25,7 @@ VS_OUTPUT VS(VS_INPUT input)
 {
     VS_OUTPUT output;
     
-    float position = mul(input.position, world); // W
+    float4 position = mul(input.position, world); // W
     position = mul(position, view); // V
     position = mul(position, projection); //P
     

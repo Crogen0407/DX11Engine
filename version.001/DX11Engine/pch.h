@@ -11,6 +11,7 @@
 #include <map>
 #include <unordered_map>
 #include <set>
+#include <array>
 #include <string>
 using namespace std;
 using std::wstring;
@@ -63,6 +64,25 @@ using namespace Microsoft::WRL;
 #include<iostream>
 using std::cout;
 using std::endl;
+
+
+#define DECLARE_SINGLE(type)	\
+private:						\
+	type() {}					\
+public:							\
+	static type* GetInst()		\
+	{							\
+		static type m_pInst;	\
+		return &m_pInst;		\
+	}							\
+
+#define GET_SINGLE(type) type::GetInst()
+
+
+#define		CORE		GCore
+#define		SCENE		CORE->GetSceneManager()
+#define		RESOURCES	CORE->GetResourceManager()
+#define		RENDER		CORE->GetRenderManager()
 
 #include "Graphics.h"
 #include "VertexBuffer.h"

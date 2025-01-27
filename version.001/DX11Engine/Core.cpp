@@ -1,6 +1,13 @@
 #include "pch.h"
 #include "Core.h"
 #include "GameObject.h"
+#include "Camera.h"
+#include "MeshRenderer.h"
+#include "SceneManager.h"
+#include "ResourceManager.h"
+#include "RenderManager.h"
+
+unique_ptr<Core> GCore = make_unique<Core>();
 
 Core::Core() : _hWnd(NULL)
 {
@@ -17,8 +24,15 @@ void Core::Init(HWND hwnd)
 	_hWnd = hwnd;
 
 	_graphics = std::make_shared<Graphics>(_hWnd);
-	_pipeline = std::make_shared<Pipeline>(_graphics->GetDeviceContext());
-	_object = std::make_shared<GameObject>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+
+	_sceneManager = make_shared<SceneManager>(_graphics);
+	_sceneManager->Init();
+	_resourceManager = make_shared<ResourceManager>(_graphics->GetDevice());
+	_resourceManager->Init();
+	_renderManager = make_shared<RenderManager>(_graphics->GetDevice(), _graphics->GetDeviceContext());
+	_renderManager->Init();
+
+	SCENE->LoadScene(L"Test");
 }
 	
 void Core::GameLoop()
@@ -29,14 +43,10 @@ void Core::GameLoop()
 
 void Core::Update()
 {
-	_object->Update();
+	SCENE->Update();
 }
 
 void Core::Render()
 {
-	_graphics->RenderBegin();
-	{
-		_object->Render(_pipeline);
-	}
-	_graphics->RenderEnd();
+	RENDER->Update(_graphics);
 }

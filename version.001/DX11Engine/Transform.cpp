@@ -2,7 +2,7 @@
 #include "Transform.h"
 #include "GameObject.h"
 
-Transform::Transform()
+Transform::Transform() : Component(ComponentType::Transform)
 {
 }
 
@@ -10,7 +10,7 @@ Transform::~Transform()
 {
 }
 
-void Transform::Init()
+void Transform::Awake()
 {
 
 }
@@ -59,10 +59,6 @@ void Transform::Update()
 	Quaternion quat;
 	_world.Decompose(_scale, quat, _position);
 	_rotation = ToEulerAngles(quat);
-
-	_right = Vec3::TransformNormal(Vec3::Right, _world);
-	_up = Vec3::TransformNormal(Vec3::Up, _world);
-	_forward = Vec3::TransformNormal(Vec3::Backward, _world);
 
 	// Children
 	for (const shared_ptr<Transform>& child : _children)

@@ -47,6 +47,36 @@
     <Filter Include="99.Headers\Utils">
       <UniqueIdentifier>{0a894058-5aea-42f3-a2c9-ef6b914fff94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Engine\Component\Animation">
+      <UniqueIdentifier>{ced4ef36-75a1-4412-bd26-bd8ed1c44073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Component\Camera">
+      <UniqueIdentifier>{d42e51a0-235c-481f-870b-e641db0845a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Component\Renderer">
+      <UniqueIdentifier>{f127078e-1f8c-4fc4-a2e4-7abe46a36d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Manager">
+      <UniqueIdentifier>{f8d80323-d8be-4f52-88fe-fa7fd17dd3f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Manager\Input">
+      <UniqueIdentifier>{66df8c10-70fd-47ed-9424-9493ed7a56b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Manager\Time">
+      <UniqueIdentifier>{9dcea6ab-96b6-4f49-8e2c-eb9d38f7119b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Manager\Scene">
+      <UniqueIdentifier>{fc7c63d5-0dbb-4db0-b695-a602b7c71679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Manager\ResourceBase">
+      <UniqueIdentifier>{70e7eaa9-c79a-4277-8885-4f80f33b908f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Resource">
+      <UniqueIdentifier>{066859fb-c413-448c-b9e5-f76c5c9465d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\Manager\Render">
+      <UniqueIdentifier>{21bd1dd0-8e5a-4eb4-8241-58e868f50cf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -100,7 +130,7 @@
     <ClInclude Include="RasterizerState.h">
       <Filter>01.Engine\Pipeline\03.RS</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="ShaderBase.h">
       <Filter>01.Engine\Pipeline\02.VS</Filter>
     </ClInclude>
     <ClInclude Include="VertexShader.h">
@@ -118,7 +148,6 @@
     <ClInclude Include="BlendState.h">
       <Filter>01.Engine\Pipeline\05.OM</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h" />
     <ClInclude Include="GameObject.h">
       <Filter>01.Engine\GameObject</Filter>
     </ClInclude>
@@ -133,6 +162,54 @@
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
       <Filter>99.Headers\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>01.Engine\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>01.Engine\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>01.Engine\Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>01.Engine\Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>01.Engine\Manager\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>01.Engine\Manager\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceBase.h">
+      <Filter>01.Engine\Manager\ResourceBase</Filter>
+    </ClInclude>
+    <ClInclude Include="MonoBehaviour.h">
+      <Filter>01.Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>01.Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>01.Engine\Manager\ResourceBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>01.Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>01.Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>01.Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>01.Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>01.Engine\Manager\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderHelper.h">
+      <Filter>01.Engine\Manager\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,7 +256,7 @@
     <ClCompile Include="RasterizerState.cpp">
       <Filter>01.Engine\Pipeline\03.RS</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="ShaderBase.cpp">
       <Filter>01.Engine\Pipeline\02.VS</Filter>
     </ClCompile>
     <ClCompile Include="VertexShader.cpp">
@@ -197,7 +274,6 @@
     <ClCompile Include="BlendState.cpp">
       <Filter>01.Engine\Pipeline\05.OM</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="GameObject.cpp">
       <Filter>01.Engine\GameObject</Filter>
     </ClCompile>
@@ -212,6 +288,54 @@
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
       <Filter>99.Headers\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>01.Engine\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRenderer.cpp">
+      <Filter>01.Engine\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>01.Engine\Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>01.Engine\Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>01.Engine\Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>01.Engine\Manager\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceBase.cpp">
+      <Filter>01.Engine\Manager\ResourceBase</Filter>
+    </ClCompile>
+    <ClCompile Include="MonoBehaviour.cpp">
+      <Filter>01.Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>01.Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>01.Engine\Manager\ResourceBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>01.Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>01.Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>01.Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>01.Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>01.Engine\Manager\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderHelper.cpp">
+      <Filter>01.Engine\Manager\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

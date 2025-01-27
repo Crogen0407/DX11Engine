@@ -1,30 +1,20 @@
 #pragma once
-
-enum ShaderScope 
-{
-	ShaderScope_None = 0,
-	ShaderScope_VertexShader = (1 << 0),
-	ShaderScope_PixelShader = (1 << 1),
-	ShaderScope_Both = ShaderScope_VertexShader | ShaderScope_PixelShader
-};
-
-class Shader
+#include "ResourceBase.h"
+class Shader : public ResourceBase
 {
 public:
-	Shader(ComPtr<ID3D11Device> device);
+	Shader();
 	virtual ~Shader();
 
-	virtual void Create(const wstring& path, const string& name, const string& version) abstract;
+	shared_ptr<InputLayout> GetInputLayout() { return _inputLayout; }
+	shared_ptr<VertexShader> GetVertexShader() { return _vertexShader; }
+	shared_ptr<PixelShader> GetPixelShader() { return _pixelShader; }
 
-	ComPtr<ID3DBlob> GetBlob() { return _blob; }
+private:
+	friend class ResourceManager;
 
-protected:
-	void LoadShaderFromFile(const wstring& path, const string& name, const string& version);
-
-protected:
-	wstring _path;
-	string _name;
-	ComPtr<ID3D11Device> _device;
-	ComPtr<ID3DBlob> _blob;
+	shared_ptr<InputLayout> _inputLayout;
+	shared_ptr<VertexShader> _vertexShader;
+	shared_ptr<PixelShader> _pixelShader;
 };
 

@@ -3,7 +3,7 @@
 #include "Core.h"
 
 Texture::Texture(ComPtr<ID3D11Device> device)
-	: _device(device)
+	: ResourceBase(ResourceType::Texture), _device(device)
 {
 }
 

@@ -1,6 +1,7 @@
 #pragma once
+#include "ResourceBase.h"
 
-class Texture
+class Texture : public ResourceBase
 {
 public:
     Texture(ComPtr<ID3D11Device> device);

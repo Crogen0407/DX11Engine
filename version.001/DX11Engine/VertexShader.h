@@ -1,9 +1,9 @@
 #pragma once
-#include "Shader.h"
+#include "ShaderBase.h"
 
-class VertexShader : public Shader
+class VertexShader : public ShaderBase
 {
-	using Super = Shader;
+	using Super = ShaderBase;
 public:
 	VertexShader(ComPtr<ID3D11Device> device);
 	~VertexShader();
