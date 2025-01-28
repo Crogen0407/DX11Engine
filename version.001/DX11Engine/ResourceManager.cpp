@@ -28,6 +28,13 @@ void ResourceManager::CreateDefaultTexture()
 		texture->Create(L"Player.png");
 		Add(texture->GetName(), texture);
 	}
+
+	{
+		auto texture = make_shared<Texture>(_device);
+		texture->SetName(L"Enemy06");
+		texture->Create(L"Enemy06.png");
+		Add(texture->GetName(), texture);
+	}
 }
 
 void ResourceManager::CreateDefaultMesh()
@@ -67,4 +74,18 @@ void ResourceManager::CreateDefaultMaterial()
 
 void ResourceManager::CreateDefaultAnimation()
 {
+	shared_ptr<Animation> animation = make_shared<Animation>();
+	animation->SetName(L"Enemy06_Idle");
+	animation->SetTexture(Get<Texture>(L"Enemy06"));
+	animation->SetLoop(true);
+
+	animation->AddKeyframe(Keyframe{ {0.f, 0.f}, {32.f, 32.f}, 0.1f });
+	animation->AddKeyframe(Keyframe{ {32.f, 0.f}, {32.f, 32.f}, 0.1f });
+	animation->AddKeyframe(Keyframe{ {64.f, 0.f}, {32.f, 32.f}, 0.1f });
+	animation->AddKeyframe(Keyframe{ {96.f, 0.f}, {32.f, 32.f}, 0.1f });
+	animation->AddKeyframe(Keyframe{ {128.f, 0.f}, {32.f, 32.f}, 0.1f });
+
+	Add(animation->GetName(), animation);
+
+	//XML
 }

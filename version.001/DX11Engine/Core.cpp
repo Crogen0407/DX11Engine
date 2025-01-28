@@ -6,6 +6,7 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "RenderManager.h"
+#include "TimeManager.h"
 
 unique_ptr<Core> GCore = make_unique<Core>();
 
@@ -32,6 +33,8 @@ void Core::Init(HWND hwnd)
 	_renderManager = make_shared<RenderManager>(_graphics->GetDevice(), _graphics->GetDeviceContext());
 	_renderManager->Init();
 
+	GET_SINGLE(TimeManager)->Init();
+
 	SCENE->LoadScene(L"Test");
 }
 	
@@ -43,6 +46,7 @@ void Core::GameLoop()
 
 void Core::Update()
 {
+	GET_SINGLE(TimeManager)->Update();
 	SCENE->Update();
 }
 

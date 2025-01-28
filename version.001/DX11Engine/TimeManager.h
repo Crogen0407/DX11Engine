@@ -1,4 +1,8 @@
 #pragma once
+
+#define DELTA_TIME GET_SINGLE(TimeManager)->GetDT()
+#define UNSCALED_DELTA_TIME GET_SINGLE(TimeManager)->GetUnscaledDT()
+
 class TimeManager
 {
 	DECLARE_SINGLE(TimeManager);

@@ -211,6 +211,13 @@
     <ClInclude Include="RenderHelper.h">
       <Filter>01.Engine\Manager\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>01.Engine\Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraMove.h" />
+    <ClInclude Include="tinyxml2.h">
+      <Filter>99.Headers\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11Engine.rc">
@@ -336,6 +343,13 @@
     </ClCompile>
     <ClCompile Include="RenderHelper.cpp">
       <Filter>01.Engine\Manager\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>01.Engine\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraMove.cpp" />
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>99.Headers\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -21,6 +21,15 @@ cbuffer CameraData : register(b1)
     row_major matrix projection;
 }
 
+cbuffer AnimationData : register(b2)
+{
+    float2 spriteOffset;
+    float2 spriteSize;
+    float2 textureSize;
+    float useAnimation;
+    float padding;
+}
+
 VS_OUTPUT VS(VS_INPUT input)
 {
     VS_OUTPUT output;
@@ -31,6 +40,12 @@ VS_OUTPUT VS(VS_INPUT input)
     
     output.position = position;
     output.uv = input.uv;
+    
+    if(useAnimation == 1.f)
+    {
+        output.uv *= spriteSize / textureSize;
+        output.uv += spriteOffset / textureSize;
+    }
     
     return output;
 }

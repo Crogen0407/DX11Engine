@@ -8,6 +8,7 @@
 #include "ResourceManager.h"
 #include "Core.h"
 #include "Mesh.h"
+#include "Animator.h"
 
 SceneManager::SceneManager(shared_ptr<Graphics> graphics)
 	: _graphics(graphics)
@@ -39,6 +40,8 @@ void SceneManager::LoadScene(wstring sceneName)
 	Init();
 }
 
+#include "CameraMove.h"
+
 shared_ptr<Scene> SceneManager::LoadTestScene()
 {
 	shared_ptr<Scene> scene = make_shared<Scene>();
@@ -47,6 +50,7 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		camera->GetOrAddTransform();
 		camera->AddComponent(make_shared<Camera>());
+		camera->AddComponent(make_shared<CameraMove>());
 		scene->AddGameObject(camera);
 	}
 
@@ -61,6 +65,13 @@ shared_ptr<Scene> SceneManager::LoadTestScene()
 
 		object->AddComponent(meshRenderer);
 		scene->AddGameObject(object);
+	}
+
+	{
+		auto animator = make_shared<Animator>();
+		object->AddComponent(animator);
+		auto anim = RESOURCES->Get<Animation>(L"Enemy06_Idle");
+		animator->SetAnimation(anim);
 	}
 
 	return scene;

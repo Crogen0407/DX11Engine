@@ -2,13 +2,13 @@
 #include "RenderManager.h"
 #include "Pipeline.h"
 #include "MeshRenderer.h"
+#include "Animator.h"
 #include "Mesh.h"
 #include "Camera.h"
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Core.h"
 #include "GameObject.h"
-#include "Mesh.h"
 
 RenderManager::RenderManager(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
 	: _device(device), _deviceContext(deviceContext)
@@ -23,6 +23,8 @@ void RenderManager::Init()
 	_transformBuffer->Create();
 	_cameraBuffer = std::make_shared<ConstantBuffer<CameraData>>(_device, _deviceContext);
 	_cameraBuffer->Create();
+	_animationBuffer = std::make_shared<ConstantBuffer<AnimationData>>(_device, _deviceContext);
+	_animationBuffer->Create();
 
 	_rasterizerState = std::make_shared<RasterizerState>(_device);
 	_rasterizerState->Create();
@@ -56,6 +58,11 @@ void RenderManager::PushTransformData()
 	_transformBuffer->CopyData(_transformData);
 }
 
+void RenderManager::PushAnimationData()
+{
+	_animationBuffer->CopyData(_animationData);
+}
+
 void RenderManager::GatherRenderableObjects()
 {
 	_renderObjects.clear();
@@ -87,6 +94,32 @@ void RenderManager::RenderObjects()
 		_transformData.world = transform->GetWorld();
 		PushTransformData();
 
+		// Animation
+		shared_ptr<Animator> animator = static_pointer_cast<Animator>(gameObject->GetFixedComponent(ComponentType::Animator));
+		if (animator)
+		{
+			const Keyframe& keyframe = animator->GetCurrentKeyframe();
+			_animationData.spriteOffset = keyframe.offset;
+			_animationData.spriteSize = keyframe.size;
+			_animationData.textureSize = animator->GetCurrentAnimation()->GetTextureSize();
+			_animationData.useAnimation = 1.0f;
+			PushAnimationData();
+
+			_pipeline->SetConstantBuffer(2, ShaderScope_VertexShader, _animationBuffer);
+			_pipeline->SetTexture(0, ShaderScope_PixelShader, animator->GetCurrentAnimation()->GetTexture());
+		}
+		else
+		{
+			_animationData.spriteOffset = { 0.f, 0.f };
+			_animationData.spriteSize = { 0.f, 0.f };
+			_animationData.textureSize = { 0.f, 0.f };
+			_animationData.useAnimation = 0.0f;
+			PushAnimationData();
+
+			_pipeline->SetConstantBuffer(2, ShaderScope_VertexShader, _animationBuffer);
+			_pipeline->SetTexture(0, ShaderScope_PixelShader, meshRenderer->GetTexture());
+		}
+
 		PipelineInfo info;
 		info.inputLayout = meshRenderer->GetInputLayout();
 		info.vertexShader = meshRenderer->GetVertexShader();
@@ -99,7 +132,7 @@ void RenderManager::RenderObjects()
 		_pipeline->SetIndexBuffer(meshRenderer->GetMesh()->GetIndexBuffer());
 		_pipeline->SetConstantBuffer(1, ShaderScope_VertexShader, _cameraBuffer);
 		_pipeline->SetConstantBuffer(0, ShaderScope_VertexShader, _transformBuffer);
-		_pipeline->SetTexture(0, ShaderScope_PixelShader, meshRenderer->GetTexture());
+		//_pipeline->SetTexture(0, ShaderScope_PixelShader, meshRenderer->GetTexture());
 		_pipeline->SetSamplerState(0, ShaderScope_PixelShader, _samplerState);
 
 		_pipeline->DrawIndexed(meshRenderer->GetMesh()->GetIndexBuffer()->GetCount(), 0, 0);
