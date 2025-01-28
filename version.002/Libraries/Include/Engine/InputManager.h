@@ -24,9 +24,9 @@ struct tKeyInfo
 };
 
 #define MOUSEPOSITION			GET_SINGLE(InputManager)->GetMousePos()
-#define GET_BUTTON(eKey)		GET_SINGLE(InputManager)->GetKey(eKey) == KEY_STATE::PRESS
-#define GET_BUTTONDOWN(eKey)	GET_SINGLE(InputManager)->GetKey(eKey) == KEY_STATE::DOWN
-#define GET_BUTTONUP(eKey)		GET_SINGLE(InputManager)->GetKey(eKey) == KEY_STATE::UP
+#define GET_BUTTON(key)			GET_SINGLE(InputManager)->GetKey(key) == KEY_STATE::PRESS
+#define GET_BUTTONDOWN(key)		GET_SINGLE(InputManager)->GetKey(key) == KEY_STATE::DOWN
+#define GET_BUTTONUP(key)		GET_SINGLE(InputManager)->GetKey(key) == KEY_STATE::UP
 
 class InputManager
 {

@@ -19,6 +19,7 @@
     <ClInclude Include="CameraDemo.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="CameraScript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -39,6 +40,7 @@
     <ClCompile Include="CameraDemo.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="CameraScript.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -62,6 +64,9 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\Shaders\ConstantBuffer.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\World.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

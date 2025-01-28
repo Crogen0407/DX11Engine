@@ -25,7 +25,7 @@ private:
 
 	float _near		= 1.f;
 	float _far		= 1000.f;
-	float _fov		= XM_PI;
+	float _fov		= XM_PI/4.f;
 	float _width	= 0;
 	float _height	= 0;
 

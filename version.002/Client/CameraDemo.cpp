@@ -2,10 +2,13 @@
 #include "CameraDemo.h"
 #include "GeometryHelper.h"
 #include "InputManager.h"
+#include "Camera.h"
+#include "GameObject.h"
+#include "CameraScript.h"
 
 void CameraDemo::Init()
 {
-	_shader = make_shared<Shader>(L"ConstantBuffer.fx");
+	_shader = make_shared<Shader>(L"World.fx");
 
 	_geometry = make_shared<Geometry<VertexColorData>>();
 	GeometryHelper::CreateQuad(_geometry, {1, 1, 0, 1});
@@ -15,31 +18,25 @@ void CameraDemo::Init()
 
 	_indexBuffer = make_shared<IndexBuffer>();
 	_indexBuffer->Create(_geometry->GetIndices());
+
+	// Camera
+	_camera = make_shared<GameObject>(DEVICE, DEVICECONTEXT);
+	_camera->GetOrAddTransform();
+	_camera->AddComponent(make_shared<Camera>());
+	_camera->AddComponent(make_shared<CameraScript>());
+	_camera->GetTransform()->SetPosition({ 0, 0, -10 });
 }
 
 void CameraDemo::Update()
 {
-	float speed = 10.f;
-	if (GET_BUTTON(KEY_TYPE::A))
-		_translation.x -= DELTA_TIME * speed;
-	if (GET_BUTTON(KEY_TYPE::D))
-		_translation.x += DELTA_TIME * speed;
-	if (GET_BUTTON(KEY_TYPE::W))
-		_translation.y += DELTA_TIME * speed;
-	if (GET_BUTTON(KEY_TYPE::S))
-		_translation.y -= DELTA_TIME * speed;
-
-	// SRT
-	_world = Matrix::CreateTranslation(_translation);
+	_camera->Update();
 }
 
 void CameraDemo::Render()
 {
 	_shader->GetMatrix("World")->SetMatrix((float*)&_world);
-	_shader->GetMatrix("View")->SetMatrix((float*)&_view);
-	_shader->GetMatrix("Projection")->SetMatrix((float*)&_projection);
-
-
+	_shader->GetMatrix("View")->SetMatrix((float*)&Camera::View);
+	_shader->GetMatrix("Projection")->SetMatrix((float*)&Camera::Projection);
 
 	UINT stride = _vertexbuffer->GetStride();
 	UINT offset = _vertexbuffer->GetOffset();
