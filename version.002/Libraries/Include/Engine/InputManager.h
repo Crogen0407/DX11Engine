@@ -23,7 +23,10 @@ struct tKeyInfo
 	bool IsPrevCheck;
 };
 
-#define MOUSEPOSITION		GET_SINGLE(InputManager)->GetMousePos()
+#define MOUSEPOSITION			GET_SINGLE(InputManager)->GetMousePos()
+#define GET_BUTTON(eKey)		GET_SINGLE(InputManager)->GetKey(eKey) == KEY_STATE::PRESS
+#define GET_BUTTONDOWN(eKey)	GET_SINGLE(InputManager)->GetKey(eKey) == KEY_STATE::DOWN
+#define GET_BUTTONUP(eKey)		GET_SINGLE(InputManager)->GetKey(eKey) == KEY_STATE::UP
 
 class InputManager
 {

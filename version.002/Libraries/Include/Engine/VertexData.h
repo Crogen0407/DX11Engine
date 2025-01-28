@@ -3,7 +3,6 @@
 struct VertexData
 {
 	Vec3 position = { 0, 0, 0 };
-	float a;
 };
 
 struct VertexTextureData
