@@ -8,5 +8,6 @@ public:
     virtual void Update() override;
 
     float _speed = 3.f;
+    Vec2 lastMousePos;
 };
 

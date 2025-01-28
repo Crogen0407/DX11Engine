@@ -1,6 +1,5 @@
 #pragma once
 
-#define GET_MOUSEPOS GET_SINGLE(InputManager)->GetMousePos()
 
 enum class KEY_TYPE
 {
@@ -23,7 +22,7 @@ struct tKeyInfo
 	bool IsPrevCheck;
 };
 
-#define MOUSEPOSITION			GET_SINGLE(InputManager)->GetMousePos()
+#define GET_MOUSEPOS			GET_SINGLE(InputManager)->GetMousePos()
 #define GET_BUTTON(key)			GET_SINGLE(InputManager)->GetKey(key) == KEY_STATE::PRESS
 #define GET_BUTTONDOWN(key)		GET_SINGLE(InputManager)->GetKey(key) == KEY_STATE::DOWN
 #define GET_BUTTONUP(key)		GET_SINGLE(InputManager)->GetKey(key) == KEY_STATE::UP
@@ -41,7 +40,8 @@ public:
 	const Vec2& GetMousePos() const
 	{
 		Vec2 mousePosVec;
-		memcpy(&mousePosVec, &_ptMouse, sizeof(mousePosVec));
+		mousePosVec.x = _ptMouse.x;
+		mousePosVec.y = _ptMouse.y;
 		return mousePosVec;
 	}
 private:

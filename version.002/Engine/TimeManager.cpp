@@ -44,7 +44,7 @@ void TimeManager::Update()
 		//POINT mousepos = GET_SINGLE(InputManager)->GetMousePos();
 		Vec2 mousepos = GET_MOUSEPOS;
 		static wchar_t buf[100] = {};
-		swprintf_s(buf, L"FPS: %d, DT: %f, Mouse: (%d, %d)",_fps, _dT
+		swprintf_s(buf, L"FPS: %d, DT: %f, Mouse: (%f, %f)",_fps, _dT
 										,mousepos.x, mousepos.y);
 		::SetWindowText(_hWnd
 						, buf);
