@@ -1,0 +1,7 @@
+<Animation Name="Enemy06_Idle" Loop="true" TexturePath="TODO">
+    <Keyframe OffsetX="0" OffsetY="0" SizeX="32" SizeY="32" Time="0.1"/>
+    <Keyframe OffsetX="32" OffsetY="0" SizeX="32" SizeY="32" Time="0.1"/>
+    <Keyframe OffsetX="64" OffsetY="0" SizeX="32" SizeY="32" Time="0.1"/>
+    <Keyframe OffsetX="96" OffsetY="0" SizeX="32" SizeY="32" Time="0.1"/>
+    <Keyframe OffsetX="128" OffsetY="0" SizeX="32" SizeY="32" Time="0.1"/>
+</Animation>

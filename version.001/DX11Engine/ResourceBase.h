@@ -32,7 +32,7 @@ protected:
 	virtual void Load(const wstring& path) { }
 	virtual void Save(const wstring& path) { }
 
-private:
+protected:
 	ResourceType _type;
 	wstring _name;
 	wstring _path;

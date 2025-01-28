@@ -88,4 +88,9 @@ void ResourceManager::CreateDefaultAnimation()
 	Add(animation->GetName(), animation);
 
 	//XML
+	animation->Save(L"TestAnimation.xml");
+
+	shared_ptr<Animation> anim2 = make_shared<Animation>();
+	anim2->Load(L"TestAnimation.xml");
+	int a = 0;
 }
