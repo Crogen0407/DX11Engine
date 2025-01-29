@@ -23,6 +23,12 @@
     <ClInclude Include="TextureDemo.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="SamplerDemo.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="HeightMapDemo.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -45,6 +51,12 @@
     </ClCompile>
     <ClCompile Include="CameraScript.cpp" />
     <ClCompile Include="TextureDemo.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerDemo.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="HeightMapDemo.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -73,6 +85,12 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\Shaders\Texture.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Sampler.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Terrain.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
