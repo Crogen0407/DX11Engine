@@ -20,7 +20,7 @@ void CameraDemo::Init()
 	_indexBuffer->Create(_geometry->GetIndices());
 
 	// Camera
-	_camera = make_shared<GameObject>(DEVICE, DEVICECONTEXT);
+	_camera = make_shared<GameObject>();
 	_camera->GetOrAddTransform();
 	_camera->AddComponent(make_shared<Camera>());
 	_camera->AddComponent(make_shared<CameraScript>());

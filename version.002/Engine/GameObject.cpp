@@ -4,10 +4,9 @@
 #include "Transform.h"
 #include "Camera.h"
 
-GameObject::GameObject(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> deviceContext)
-	: _device(device)
+GameObject::GameObject()
 {
-	
+	_device = DEVICE;
 }
 
 GameObject::~GameObject()
