@@ -29,6 +29,9 @@
     <ClInclude Include="HeightMapDemo.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="NormalDemo.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -57,6 +60,9 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="HeightMapDemo.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalDemo.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -91,6 +97,9 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\Shaders\Terrain.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Normal.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
