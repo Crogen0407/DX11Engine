@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AmbientDemo.h" />
     <ClInclude Include="CameraDemo.h" />
     <ClInclude Include="CameraScript.h" />
     <ClInclude Include="ConstantBufferDemo.h" />
     <ClInclude Include="DepthStencilDemo.h" />
+    <ClInclude Include="DiffuseDemo.h" />
     <ClInclude Include="GlobalTestDemo.h" />
     <ClInclude Include="HeightMapDemo.h" />
     <ClInclude Include="Main.h" />
@@ -35,10 +37,12 @@
     <ClInclude Include="TriangleDemo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AmbientDemo.cpp" />
     <ClCompile Include="CameraDemo.cpp" />
     <ClCompile Include="CameraScript.cpp" />
     <ClCompile Include="ConstantBufferDemo.cpp" />
     <ClCompile Include="DepthStencilDemo.cpp" />
+    <ClCompile Include="DiffuseDemo.cpp" />
     <ClCompile Include="GlobalTestDemo.cpp" />
     <ClCompile Include="HeightMapDemo.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -83,6 +87,26 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Lighting_Ambient.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Lighting_Diffuse.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="..\Shaders\Normal.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -41,6 +41,12 @@
     <ClInclude Include="DepthStencilDemo.h">
       <Filter>Game\Week2</Filter>
     </ClInclude>
+    <ClInclude Include="AmbientDemo.h">
+      <Filter>Game\Week2</Filter>
+    </ClInclude>
+    <ClInclude Include="DiffuseDemo.h">
+      <Filter>Game\Week2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -81,6 +87,12 @@
       <Filter>Game\Week2</Filter>
     </ClCompile>
     <ClCompile Include="DepthStencilDemo.cpp">
+      <Filter>Game\Week2</Filter>
+    </ClCompile>
+    <ClCompile Include="AmbientDemo.cpp">
+      <Filter>Game\Week2</Filter>
+    </ClCompile>
+    <ClCompile Include="DiffuseDemo.cpp">
       <Filter>Game\Week2</Filter>
     </ClCompile>
   </ItemGroup>
@@ -139,6 +151,12 @@
       <Filter>Shaders\Common</Filter>
     </FxCompile>
     <FxCompile Include="..\Shaders\GlobalTest.fx">
+      <Filter>Shaders\Week2</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Lighting_Ambient.fx">
+      <Filter>Shaders\Week2</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Lighting_Diffuse.fx">
       <Filter>Shaders\Week2</Filter>
     </FxCompile>
   </ItemGroup>

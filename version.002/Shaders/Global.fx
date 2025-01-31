@@ -98,6 +98,4 @@ pass name                                           \
 // Global //
 ////////////
 
-float3 LightDir;
-
 #endif
