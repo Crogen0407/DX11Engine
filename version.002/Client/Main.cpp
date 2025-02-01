@@ -12,20 +12,19 @@
 #include "MeshDemo.h"
 #include "GlobalTestDemo.h"
 #include "DepthStencilDemo.h"
-#include "AmbientDemo.h"
-#include "DiffuseDemo.h"
+#include "LightingDemo.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
 	CoreDesc desc;
-	desc.appName = L"DX11Engine";
+	desc.appName = L"LightingDemo";
 	desc.hInstance = hInstance;
 	desc.vsync = false;
 	desc.hWnd = NULL;
 	desc.width = 800;
 	desc.height = 600;
 	desc.clearColor = Color(0.f, 0.f, 0.f, 0.f);
-	desc.app = make_shared<DiffuseDemo>();
+	desc.app = make_shared<LightingDemo>();
 
 	CORE->Run(desc);
 

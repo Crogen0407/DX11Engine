@@ -47,6 +47,15 @@
     <ClInclude Include="DiffuseDemo.h">
       <Filter>Game\Week2</Filter>
     </ClInclude>
+    <ClInclude Include="SpecularDemo.h">
+      <Filter>Game\Week2</Filter>
+    </ClInclude>
+    <ClInclude Include="EmissiveDemo.h">
+      <Filter>Game\Week2</Filter>
+    </ClInclude>
+    <ClInclude Include="LightingDemo.h">
+      <Filter>Game\Week2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -93,6 +102,15 @@
       <Filter>Game\Week2</Filter>
     </ClCompile>
     <ClCompile Include="DiffuseDemo.cpp">
+      <Filter>Game\Week2</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecularDemo.cpp">
+      <Filter>Game\Week2</Filter>
+    </ClCompile>
+    <ClCompile Include="EmissiveDemo.cpp">
+      <Filter>Game\Week2</Filter>
+    </ClCompile>
+    <ClCompile Include="LightingDemo.cpp">
       <Filter>Game\Week2</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,6 +176,18 @@
     </FxCompile>
     <FxCompile Include="..\Shaders\Lighting_Diffuse.fx">
       <Filter>Shaders\Week2</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Lighting_Specular.fx">
+      <Filter>Shaders\Week2</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Lighting_Emissive.fx">
+      <Filter>Shaders\Week2</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Lighting.fx">
+      <Filter>Shaders\Week2</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Light.fx">
+      <Filter>Shaders\Common</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

@@ -25,14 +25,17 @@
     <ClInclude Include="ConstantBufferDemo.h" />
     <ClInclude Include="DepthStencilDemo.h" />
     <ClInclude Include="DiffuseDemo.h" />
+    <ClInclude Include="EmissiveDemo.h" />
     <ClInclude Include="GlobalTestDemo.h" />
     <ClInclude Include="HeightMapDemo.h" />
+    <ClInclude Include="LightingDemo.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MeshDemo.h" />
     <ClInclude Include="NormalDemo.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="QuadDemo.h" />
     <ClInclude Include="SamplerDemo.h" />
+    <ClInclude Include="SpecularDemo.h" />
     <ClInclude Include="TextureDemo.h" />
     <ClInclude Include="TriangleDemo.h" />
   </ItemGroup>
@@ -43,8 +46,10 @@
     <ClCompile Include="ConstantBufferDemo.cpp" />
     <ClCompile Include="DepthStencilDemo.cpp" />
     <ClCompile Include="DiffuseDemo.cpp" />
+    <ClCompile Include="EmissiveDemo.cpp" />
     <ClCompile Include="GlobalTestDemo.cpp" />
     <ClCompile Include="HeightMapDemo.cpp" />
+    <ClCompile Include="LightingDemo.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MeshDemo.cpp" />
     <ClCompile Include="NormalDemo.cpp" />
@@ -54,6 +59,7 @@
     </ClCompile>
     <ClCompile Include="QuadDemo.cpp" />
     <ClCompile Include="SamplerDemo.cpp" />
+    <ClCompile Include="SpecularDemo.cpp" />
     <ClCompile Include="TextureDemo.cpp" />
     <ClCompile Include="TriangleDemo.cpp" />
   </ItemGroup>
@@ -88,6 +94,8 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
     </FxCompile>
+    <FxCompile Include="..\Shaders\Light.fx" />
+    <FxCompile Include="..\Shaders\Lighting.fx" />
     <FxCompile Include="..\Shaders\Lighting_Ambient.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </EntryPointName>
@@ -99,6 +107,17 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
     </FxCompile>
     <FxCompile Include="..\Shaders\Lighting_Diffuse.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\Shaders\Lighting_Emissive.fx" />
+    <FxCompile Include="..\Shaders\Lighting_Specular.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
@@ -273,6 +292,15 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <FxCompile>
+      <EntryPointName />
+    </FxCompile>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -294,6 +322,15 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <FxCompile>
+      <EntryPointName />
+    </FxCompile>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
