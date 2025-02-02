@@ -103,4 +103,21 @@ float4 ComputeLight(float3 normal, float2 uv, float3 worldPosition)
     
     return ambientColor + diffuseColor + specularColor + emissiveColor;
 }
+
+void ComputeNormalMapping(inout float3 normal, float3 tangent, float2 uv)
+{
+    float3 map = NormalMap.Sample(LinearSampler, uv);
+    if (any(map.rgb) == false)
+        return;
+    
+    float3 N = normalize(normal); // z;
+    float3 T = normalize(tangent); // x;
+    float3 B = normalize(cross(N, T)); // y
+    float3x3 TBN = float3x3(T, B, N); // TS -> WS
+    
+    float3 tangentSpaceNormal = (map.rgb * 2.0f - 1.0f);
+    float3 worldNormal = mul(tangentSpaceNormal, TBN);
+    
+    normal = worldNormal;
+}
 #endif
