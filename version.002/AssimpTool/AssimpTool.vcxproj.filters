@@ -7,6 +7,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{9daf3c6f-718f-4ac9-9dcd-652cc2b9781d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{cac0d67f-440e-4d3b-aae8-691d7f30b816}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraScript.cpp">
@@ -21,6 +24,9 @@
     <ClCompile Include="Converter.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="AssimpTool.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraScript.h">
@@ -34,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="Converter.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AssimpTool.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -67,7 +67,7 @@ BOOL Core::InitInstance(int cmdShow)
 	_desc.hWnd = CreateWindowW(_desc.appName.c_str(), _desc.appName.c_str(), WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, _desc.hInstance, nullptr);
 
-	if (!_desc.hWnd)
+	if (!_desc.hWnd)	
 		return FALSE;
 
 	::ShowWindow(_desc.hWnd, cmdShow);
